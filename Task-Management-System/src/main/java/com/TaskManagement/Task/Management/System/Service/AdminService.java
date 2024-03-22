@@ -1,7 +1,7 @@
 package com.TaskManagement.Task.Management.System.Service;
 
-import com.TaskManagement.Task.Management.System.Entity.TaskManagementAdmin;
+import com.TaskManagement.Task.Management.System.Entity.AddAdminRequest;
 
 public interface AdminService {
-    public TaskManagementAdmin addAdmin(TaskManagementAdmin Admin);
+    public String addAdmin(AddAdminRequest Admin);
 }

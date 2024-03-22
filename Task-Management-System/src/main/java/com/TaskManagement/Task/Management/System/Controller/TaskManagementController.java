@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.TaskManagement.Task.Management.System.Entity.TaskManagementAdmin;
+import com.TaskManagement.Task.Management.System.Entity.AddAdminRequest;
 import com.TaskManagement.Task.Management.System.Service.AdminService;
 
 @CrossOrigin
@@ -21,9 +21,9 @@ public class TaskManagementController {
     AdminService adminService;
     
     @PostMapping("/addAdmin")
-    public ResponseEntity<TaskManagementAdmin> addPerson(@RequestBody TaskManagementAdmin Admin){
-        TaskManagementAdmin person = adminService.addAdmin(Admin);
-        return new ResponseEntity<>(person, HttpStatus.CREATED);
+    public ResponseEntity<String> addPerson(@RequestBody AddAdminRequest Admin){
+        String response = adminService.addAdmin(Admin);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
 }

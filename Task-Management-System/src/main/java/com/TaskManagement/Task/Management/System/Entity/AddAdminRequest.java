@@ -1,56 +1,17 @@
 package com.TaskManagement.Task.Management.System.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "Admin")
-public class TaskManagementAdmin {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class AddAdminRequest {
 
-    @Column(name = "admin_name", nullable = false)
     private String adminName;
 
-    @Column(name = "mobile_number")
     private String mobileNumber;
 
-    @Column(name = "email")
     private String email;
 
-    @Column(name = "password", nullable = false)
     private String password;
 
-    public TaskManagementAdmin() {
-
-    }
-
-    public TaskManagementAdmin(String adminName, String mobileNumber, String email, String password) {
-        this.adminName = adminName;
-        this.mobileNumber = mobileNumber;
-        this.email = email;
-        this.password = password;
-    }
-
-    /**
-     * @return Long return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    
     /**
      * @return String return the adminName
      */
