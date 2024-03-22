@@ -22,7 +22,7 @@ public class TaskManagementAdmin {
 
     @Column(name = "email")
     private String Email;
-    
+
     @Column(name = "password", nullable = false)
     private String Password;
 
@@ -41,7 +41,7 @@ public class TaskManagementAdmin {
     public Long getId() {
         return id;
     }
-
+    
     public void setId(Long id) {
         this.id = id;
     }
