@@ -15,7 +15,6 @@ import com.TaskManagement.Task.Management.System.Model.AddAdminRequest;
 import com.TaskManagement.Task.Management.System.Model.UserDetails;
 import com.TaskManagement.Task.Management.System.Service.AdminService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @CrossOrigin
