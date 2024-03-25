@@ -1,4 +1,4 @@
-package com.TaskManagement.Task.Management.System.Entity;
+package com.TaskManagement.Task.Management.System.Model;
 
 
 public class AddAdminRequest {
@@ -11,7 +11,10 @@ public class AddAdminRequest {
 
     private String password;
 
+    private String userType;
     
+    private String reportsTo;
+
     /**
      * @return String return the adminName
      */
@@ -66,6 +69,33 @@ public class AddAdminRequest {
      */
     public void setPassword(String password) {
         this.password = password;
+    }       
+
+    /**
+     * @return String return the userType
+     */
+    public String getUserType() {
+        return userType;
     }
 
+    /**
+     * @param userType the userType to set
+     */
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    /**
+     * @return String return the reportsTo
+     */
+    public String getReportsTo() {
+        return reportsTo;
+    }
+
+    /**
+     * @param reportsTo the reportsTo to set
+     */
+    public void setReportsTo(String reportsTo) {
+        this.reportsTo = reportsTo;
+    }
 }

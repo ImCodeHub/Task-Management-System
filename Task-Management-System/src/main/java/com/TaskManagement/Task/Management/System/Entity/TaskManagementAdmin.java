@@ -26,16 +26,29 @@ public class TaskManagementAdmin {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column (name = "user_type")
+    private String userType;
+
+    @Column (name = "reports_to")
+    private String reportsTo;
+
     public TaskManagementAdmin() {
 
     }
 
-    public TaskManagementAdmin(String adminName, String mobileNumber, String email, String password) {
+    
+
+    public TaskManagementAdmin(String adminName, String mobileNumber, String email, String password, String userType,
+            String reportsTo) {
         this.adminName = adminName;
         this.mobileNumber = mobileNumber;
         this.email = email;
         this.password = password;
+        this.userType = userType;
+        this.reportsTo = reportsTo;
     }
+
+
 
     /**
      * @return Long return the id
@@ -105,6 +118,37 @@ public class TaskManagementAdmin {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    
+
+
+    /**
+     * @return String return the userType
+     */
+    public String getUserType() {
+        return userType;
+    }
+
+    /**
+     * @param userType the userType to set
+     */
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    /**
+     * @return String return the reportsTo
+     */
+    public String getReportsTo() {
+        return reportsTo;
+    }
+
+    /**
+     * @param reportsTo the reportsTo to set
+     */
+    public void setReportsTo(String reportsTo) {
+        this.reportsTo = reportsTo;
     }
 
 }
