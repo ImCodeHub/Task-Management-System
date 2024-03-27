@@ -11,4 +11,6 @@ public interface AdminService {
     public List<UserDetails> getmanagers();
 
     public boolean deletePerson(Long id);
+
+    public String updatePerson(Long id, AddAdminRequest admin);
 }

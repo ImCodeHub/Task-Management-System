@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.swing.text.html.Option;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +40,7 @@ public class TaskManagementServiceImpl implements AdminService {
         }
         return response;
     }
-    
+
     // to delete a person from database
     @Override
     public boolean deletePerson(Long id) {
@@ -49,4 +51,24 @@ public class TaskManagementServiceImpl implements AdminService {
         }
         return false;
     }
+    // to update the person details in database
+    @Override
+    public String updatePerson(Long id, AddAdminRequest admin) {
+        Optional<TaskManagementAdmin> optional = taskRepository.findById(id);
+        if(!optional.isPresent()){
+            return null;
+        }
+        TaskManagementAdmin existPerson = optional.get();
+        existPerson.setAdminName(admin.getAdminName());
+        existPerson.setMobileNumber(admin.getMobileNumber());
+        existPerson.setEmail(admin.getEmail());
+        existPerson.setUserType(admin.getUserType());
+        existPerson.setReportsTo(admin.getReportsTo());
+
+        // saving person details after set the new details
+        taskRepository.save(existPerson);
+
+        return "changes saved successfully"; 
+    }
+    
 }

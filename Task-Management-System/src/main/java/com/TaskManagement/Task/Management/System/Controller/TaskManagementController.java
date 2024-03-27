@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,25 +28,41 @@ public class TaskManagementController {
     AdminService adminService;
 
     @PostMapping("/addAdmin")
-    public ResponseEntity<String> addPerson(@RequestBody AddAdminRequest Admin) {
-        String response = adminService.addAdmin(Admin);
+    public ResponseEntity<String> addPerson(@RequestBody AddAdminRequest admin) {
+        String response = adminService.addAdmin(admin);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @GetMapping("/manager")
     public ResponseEntity<List<UserDetails>> getManagerName() {
         List<UserDetails> userDetails = adminService.getmanagers();
-        return new ResponseEntity<>(userDetails, HttpStatus.CREATED);
+        return new ResponseEntity<>(userDetails, HttpStatus.FOUND);
     }
 
     @DeleteMapping("/deletePerson/{id}")
     public ResponseEntity<String> deletPerson(@PathVariable Long id) {
         boolean deleteResponse = adminService.deletePerson(id);
         if (deleteResponse) {
-            return new ResponseEntity<>("Person has been Deleted", HttpStatus.CREATED);
+            return new ResponseEntity<>("Person has been Deleted", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Person not found", HttpStatus.CREATED);
+            return new ResponseEntity<>("Person not found", HttpStatus.NOT_FOUND);
         }
     }
 
+    @PutMapping("/updatePersonDetails/{id}")
+    public ResponseEntity<String> updatePerson(@PathVariable Long id, @RequestBody AddAdminRequest person ){
+        try{
+            String update = adminService.updatePerson(id, person);
+            if(update==null){
+                return new ResponseEntity<>("person not found", HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>("person details updated", HttpStatus.OK);
+        }
+        catch(Exception e){
+            return new ResponseEntity<>("Error while updating person's details: "+ e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
 }
+

@@ -8,4 +8,6 @@ import com.TaskManagement.Task.Management.System.Entity.TaskManagementAdmin;
 
 public interface TaskManagementRepository extends JpaRepository<TaskManagementAdmin,Long> {
     List<TaskManagementAdmin> findByUserType(String userType);
+
 }
+ 
