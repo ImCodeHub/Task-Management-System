@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="taskinfo")
-public class TaskDetails {
+public class TaskInfo {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long taskId;
@@ -32,10 +32,10 @@ public class TaskDetails {
     @Column(name="asign_to")
     private Long asignTo;
 
-    public TaskDetails() {
+    public TaskInfo() {
     }
 
-    public TaskDetails(Long taskId, String taskName, String description, int startDate, int endDate, String status,
+    public TaskInfo(Long taskId, String taskName, String description, int startDate, int endDate, String status,
             Long asignTo) {
         this.taskId = taskId;
         this.taskName = taskName;
