@@ -9,4 +9,6 @@ public interface AdminService {
     public String addAdmin(AddAdminRequest Admin);
 
     public List<UserDetails> getmanagers();
+
+    public boolean deletePerson(Long id);
 }

@@ -2,6 +2,7 @@ package com.TaskManagement.Task.Management.System.TaskServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,16 @@ public class TaskManagementServiceImpl implements AdminService {
             response.add(new UserDetails(admin.getId(), admin.getAdminName()));
         }
         return response;
+    }
+
+    @Override
+    public boolean deletePerson(Long id) {
+        Optional<TaskManagementAdmin> optionalPerson = taskRepository.findById(id);
+        if(optionalPerson.isPresent()){
+            taskRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
 }
