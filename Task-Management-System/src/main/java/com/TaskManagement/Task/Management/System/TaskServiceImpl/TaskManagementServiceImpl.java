@@ -28,6 +28,7 @@ public class TaskManagementServiceImpl implements AdminService {
         return "Admin saved Successfully";
     }
 
+    // to find the manager from database
     @Override
     public List<UserDetails> getmanagers() {
         List<UserDetails> response = new ArrayList<>();
@@ -37,7 +38,8 @@ public class TaskManagementServiceImpl implements AdminService {
         }
         return response;
     }
-
+    
+    // to delete a person from database
     @Override
     public boolean deletePerson(Long id) {
         Optional<TaskManagementAdmin> optionalPerson = taskRepository.findById(id);
@@ -47,5 +49,4 @@ public class TaskManagementServiceImpl implements AdminService {
         }
         return false;
     }
-
 }
