@@ -1,5 +1,9 @@
 package com.TaskManagement.Task.Management.System.Entity;
 
+
+import java.sql.Timestamp;
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +15,7 @@ import jakarta.persistence.Table;
 @Table(name="taskinfo")
 public class TaskInfo {
     @Id
+    @Column(name="task_id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long taskId;
 
@@ -21,10 +26,10 @@ public class TaskInfo {
     private String description;
 
     @Column(name="start_date")
-    private int startDate;
+    private Timestamp startDate;
 
     @Column(name = "end_date")
-    private int endDate;
+    private Timestamp endDate;
 
     @Column(name ="status")
     private String status;
@@ -35,9 +40,8 @@ public class TaskInfo {
     public TaskInfo() {
     }
 
-    public TaskInfo(Long taskId, String taskName, String description, int startDate, int endDate, String status,
+    public TaskInfo(String taskName, String description, Timestamp startDate, Timestamp endDate, String status,
             Long asignTo) {
-        this.taskId = taskId;
         this.taskName = taskName;
         this.description = description;
         this.startDate = startDate;
@@ -73,7 +77,8 @@ public class TaskInfo {
     public void setTaskName(String taskName) {
         this.taskName = taskName;
     }
-
+ 
+     
     /**
      * @return String return the description
      */
@@ -91,28 +96,28 @@ public class TaskInfo {
     /**
      * @return int return the startDate
      */
-    public int getStartDate() {
+    public Timestamp getStartDate() {
         return startDate;
     }
 
     /**
      * @param startDate the startDate to set
      */
-    public void setStartDate(int startDate) {
+    public void setStartDate(Timestamp startDate) {
         this.startDate = startDate;
     }
 
     /**
      * @return int return the endDate
      */
-    public int getEndDate() {
+    public Timestamp getEndDate() {
         return endDate;
     }
 
     /**
      * @param endDate the endDate to set
      */
-    public void setEndDate(int endDate) {
+    public void setEndDate(Timestamp endDate) {
         this.endDate = endDate;
     }
 

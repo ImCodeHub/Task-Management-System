@@ -19,7 +19,6 @@ import com.TaskManagement.Task.Management.System.Service.AdminService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class TaskManagementController {
@@ -33,6 +32,7 @@ public class TaskManagementController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
     //for drop down
+    @CrossOrigin
     @GetMapping("/manager")
     public ResponseEntity<List<UserDetails>> getManagerName() {
         List<UserDetails> userDetails = adminService.getmanagers();
