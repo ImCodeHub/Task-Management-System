@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.TaskManagement.Task.Management.System.Entity.TaskInfo;
 import com.TaskManagement.Task.Management.System.Model.AddTask;
 import com.TaskManagement.Task.Management.System.Model.ManagerTaskInfo;
 import com.TaskManagement.Task.Management.System.TaskServiceImpl.TaskServiceImpl;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -41,6 +44,15 @@ public class TaskInfoController {
         
         return new ResponseEntity<>(taskServiceImpl.getManagerTask(managerId),HttpStatus.FOUND);
     }
+
+    // To update the task Details 
+    @PutMapping("updateTask/{id}")
+    public ResponseEntity<String> updateTask(@PathVariable Long id, @RequestBody AddTask updatedTask){
+        String update=taskServiceImpl.updateTask(id, updatedTask);
+        return new ResponseEntity<>(update,HttpStatus.OK);
+    }
+    
+    
     
     
     
