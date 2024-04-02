@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.TaskManagement.Task.Management.System.Entity.TaskInfo;
 import com.TaskManagement.Task.Management.System.Model.AddTask;
 import com.TaskManagement.Task.Management.System.Model.ManagerTaskInfo;
 import com.TaskManagement.Task.Management.System.TaskServiceImpl.TaskServiceImpl;
@@ -48,12 +48,27 @@ public class TaskInfoController {
     // To update the task Details 
     @PutMapping("updateTask/{id}")
     public ResponseEntity<String> updateTask(@PathVariable Long id, @RequestBody AddTask updatedTask){
-        String update=taskServiceImpl.updateTask(id, updatedTask);
-        return new ResponseEntity<>(update,HttpStatus.OK);
+        try{
+            String update=taskServiceImpl.updateTask(id, updatedTask);
+            if(update == null){
+                return new ResponseEntity<>("Task Not found",HttpStatus.NOT_FOUND);
+            }
+
+            return new ResponseEntity<>(update,HttpStatus.OK);
+        }
+        catch(Exception e){
+            return new ResponseEntity<>("Error found while update Task: "+ e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     
-    
-    
-    
-    
+    // To Delete the specific Task
+    @DeleteMapping("deleteTask/{taskId}")
+    public ResponseEntity<Boolean> deleteTask(@PathVariable Long taskId){
+        try {
+            boolean response = taskServiceImpl.DeleteTask(taskId);
+            return new ResponseEntity<>(response,HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(false,HttpStatus.OK);
+        }
+    }
 }
