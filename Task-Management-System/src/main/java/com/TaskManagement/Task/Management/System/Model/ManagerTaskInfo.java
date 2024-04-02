@@ -1,12 +1,11 @@
 package com.TaskManagement.Task.Management.System.Model;
 
-import java.sql.Timestamp;
 
 public class ManagerTaskInfo {
     private String taskName;
     private String description;
-    private Timestamp startDate;
-    private Timestamp endDate;
+    private String startDate;
+    private String endDate;
     private String status;
 
 
@@ -38,33 +37,7 @@ public class ManagerTaskInfo {
         this.description = description;
     }
 
-    /**
-     * @return Timestamp return the startDate
-     */
-    public Timestamp getStartDate() {
-        return startDate;
-    }
-
-    /**
-     * @param startDate the startDate to set
-     */
-    public void setStartDate(Timestamp startDate) {
-        this.startDate = startDate;
-    }
-
-    /**
-     * @return Timestamp return the endDate
-     */
-    public Timestamp getEndDate() {
-        return endDate;
-    }
-
-    /**
-     * @param endDate the endDate to set
-     */
-    public void setEndDate(Timestamp endDate) {
-        this.endDate = endDate;
-    }
+    
 
     /**
      * @return String return the status
@@ -78,6 +51,35 @@ public class ManagerTaskInfo {
      */
     public void setStatus(String status) {
         this.status = status;
+    }
+
+
+    /**
+     * @return String return the startDate
+     */
+    public String getStartDate() {
+        return startDate;
+    }
+
+    /**
+     * @param startDate the startDate to set
+     */
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    /**
+     * @return String return the endDate
+     */
+    public String getEndDate() {
+        return endDate;
+    }
+
+    /**
+     * @param endDate the endDate to set
+     */
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
 }
