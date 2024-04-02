@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -38,11 +40,22 @@ public class TaskInfoController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
+    //get the List of all Task
+    @GetMapping("/TaskList")
+    public ResponseEntity<List<AddTask>> getList(){
+        List<AddTask> list =taskServiceImpl.getTaskList();
+        return new ResponseEntity<>(list,HttpStatus.FOUND);
+    }
+    
+
     //get the task by specific manager by managerId 
     @GetMapping("/getTask/{managerId}")
     public ResponseEntity<List<ManagerTaskInfo>> getTask(@PathVariable Long managerId){
-        
-        return new ResponseEntity<>(taskServiceImpl.getManagerTask(managerId),HttpStatus.FOUND);
+        try {
+            return new ResponseEntity<>(taskServiceImpl.getManagerTask(managerId),HttpStatus.FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+        }
     }
 
     // To update the task Details 

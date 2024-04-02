@@ -10,6 +10,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.data.domain.Sort;
+
 import com.TaskManagement.Task.Management.System.Entity.TaskInfo;
 import com.TaskManagement.Task.Management.System.Model.AddTask;
 import com.TaskManagement.Task.Management.System.Model.ManagerTaskInfo;
@@ -99,6 +101,26 @@ public class TaskServiceImpl implements TaskService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<AddTask> getTaskList() {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        List<AddTask> response = new ArrayList<>();
+       List<TaskInfo> taskLists = taskRepository.findAll(Sort.by("taskId").descending());
+       for(TaskInfo taskList : taskLists){
+        AddTask addTask = new AddTask();
+        addTask.setTaskName(taskList.getTaskName());
+        addTask.setDescription(taskList.getDescription());
+        addTask.setStartDate(sdf.format(new Date(taskList.getStartDate().getTime())));
+        addTask.setEndDate(sdf.format(new Date(taskList.getEndDate().getTime())));
+        addTask.setStatus(taskList.getStatus());
+        addTask.setAsignTo(taskList.getAsignTo());
+
+        response.add(addTask);
+    }
+    return response;
     }
 
 }

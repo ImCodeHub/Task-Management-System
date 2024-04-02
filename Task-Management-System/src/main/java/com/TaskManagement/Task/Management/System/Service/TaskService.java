@@ -10,4 +10,5 @@ public interface TaskService {
     public List<ManagerTaskInfo> getManagerTask(Long managerId);
     public String updateTask(Long taskId, AddTask task);
     public boolean DeleteTask(Long taskId);
+    public List<AddTask> getTaskList();
 }
